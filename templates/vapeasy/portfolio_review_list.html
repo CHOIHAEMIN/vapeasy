@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>portfolio_review_list</title>
-    <link rel="stylesheet" href="portfolio_review_list.css">
+    <link rel="stylesheet" href="{% static 'portfolio_review_list.css' %}">
 </head>
 <body>
     <div class="container">
@@ -20,15 +21,15 @@
                 </thead>
 
                 <tbody>
+                    {% if review_list %}
+                        {% for review in review_list %}
                     <tr>
-                        {% if review_list %}
-                            {% for review in review_list %}
-                            <td>{{ review.id }}</td>
-                            <td><a href="/vapeasy/{{ review.id }}">{{ review.subject }}</a></td>
-                            <td>{{ review.create_date }}</td>
-                            {% endfor %}
-                        {% endif %}
+                        <td>{{ review.id }}</td>
+                        <td><a href="/vapeasy/{{ review.id }}">{{ review.subject }}</a></td>
+                        <td>{{ review.create_date }}</td>
                     </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div><!--content end-->

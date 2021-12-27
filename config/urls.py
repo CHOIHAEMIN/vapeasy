@@ -19,4 +19,5 @@ from vapeasy import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('vapeasy.urls')),
 ]
