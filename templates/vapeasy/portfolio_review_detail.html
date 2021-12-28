@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'portfolio_review_detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="detail">
+            <div class="title">
+                <div class="subject">{{ review.subject }}</div>
+                <div class="author">작성자</div>
+                <div class="create_date">{{ review.create_date }}</div>
+            </div>
+            <div class="content">{{ review.content }}</div>
+        </div><!--리뷰 내용 detail div end-->
+    </div><!--container end-->
+</body>
+</html>
