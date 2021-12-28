@@ -1,0 +1,38 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAPEASY</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css'%}">
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+
+</head>
+<body>
+    <div class="mycontainer">
+        <div class="mybanner">
+            <div><a href="#">VAPEASY</a></div>
+        </div><!--mybanner end-->
+
+        <div class="mynavbar">
+            <div class="menu"><a href="#">HOME</a></div>
+            <div class="menu"><a href="#">SURVEY</a></div>
+            <div class="menu"><a href="#">PRODUCT</a></div>
+            <div class="menu"><a href="#">REVIEW</a></div>
+            <div class="menu"><a href="#">SIGN IN</a></div>
+        </div><!--네비 div 끝-->
+
+<!-- 기본 템플릿 안에 삽입될 내용 start-->
+{% block content %}
+<!-- 이 사이로 list, detail 등 상속받은 html 코드들이 삽입.-->
+{% endblock %}
+{% block script %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 end-->
+
+    </div><!--mycontainer end-->
+</body>
+</html>

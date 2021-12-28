@@ -1,0 +1,45 @@
+.mysurvey{
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+.survey_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+.survey_button{
+    position: absolute;
+    top: 50%;
+    left: 13%;
+    z-index: 1000;
+    font-size: 2rem;
+    font-weight: bold;
+    color: grey;
+}
+.mysection{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+}
+.mymap{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 100%;
+}
+.mapapi{
+    width: 80%;
+    height: 100%;
+}
+.current_review{
+    border: 3px solid red;
+    width: 25%;
+    height: 100%;
+}
+.brandnew{
+    width: 25%;
+    height: 100%;
+}
