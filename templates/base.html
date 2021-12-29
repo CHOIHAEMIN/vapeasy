@@ -7,21 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAPEASY</title>
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'base.css'%}">
-    <link rel="stylesheet" href="{% static 'index.css'%}">
-
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
     <div class="mycontainer">
         <div class="mybanner">
-            <div><a href="#">VAPEASY</a></div>
+            <div><a href="{% url 'vapeasy:index' %}">VAPEASY</a></div>
         </div><!--mybanner end-->
 
         <div class="mynavbar">
-            <div class="menu"><a href="#">HOME</a></div>
-            <div class="menu"><a href="#">SURVEY</a></div>
+            <div class="menu"><a href="{% url 'vapeasy:index' %}">HOME</a></div>
+            <div class="menu"><a href="{% url 'vapeasy:survey' %}">SURVEY</a></div>
             <div class="menu"><a href="#">PRODUCT</a></div>
-            <div class="menu"><a href="#">REVIEW</a></div>
+            <div class="menu"><a href="{% url 'vapeasy:review_list' %}">REVIEW</a></div>
             <div class="menu"><a href="#">SIGN IN</a></div>
         </div><!--네비 div 끝-->
 
@@ -29,6 +27,7 @@
 {% block content %}
 <!-- 이 사이로 list, detail 등 상속받은 html 코드들이 삽입.-->
 {% endblock %}
+
 {% block script %}
 {% endblock %}
 <!-- 기본 템플릿 안에 삽입될 내용 end-->

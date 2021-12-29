@@ -19,7 +19,7 @@ html, body{
     align-items: center;
     font-size: 3rem;
     font-weight: bold;
-    height: 15%;
+    height: 15vh;
     background-color: #003366;
 }
 .mybanner > div > a{
@@ -31,7 +31,7 @@ html, body{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 5%;
+    height: 5vh;
     margin-bottom: 0.2rem;
 }
 .menu{
@@ -39,6 +39,7 @@ html, body{
 }
 .menu a{
     color: black;
+    padding: 0.7rem 0;
 }
 .mynavbar div:first-child{
     margin-right: auto;

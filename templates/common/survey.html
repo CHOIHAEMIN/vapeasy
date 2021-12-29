@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/survey.css' %}">
+    <div class="container">
+        <div class="question">
+            <h1>Question?</h1>
+        </div><!--question 끝-->
+
+        <div class="content">
+            <label class="option"><input type="checkbox">취향1-1</label>
+            <label class="option"><input type="checkbox">취향1-2</label>
+            <label class="option"><input type="checkbox">취향1-3</label>
+            <label class="option"><input type="checkbox">취향1-4</label>
+            <label class="option"><input type="checkbox">취향1-5</label>
+            <label class="option2"><input type="checkbox">취향2-1</label>
+            <label class="option2"><input type="checkbox">취향2-2</label>
+            <label class="option2"><input type="checkbox">취향2-3</label>
+            <label class="option2"><input type="checkbox">취향2-4</label>
+            <label class="option2"><input type="checkbox">취향2-5</label>
+            <label class="option3"><input type="checkbox">취향3-1</label>
+            <label class="option3"><input type="checkbox">취향3-2</label>
+            <label class="option3"><input type="checkbox">취향3-3</label>
+            <label class="option3"><input type="checkbox">취향3-4</label>
+            <label class="option3"><input type="checkbox">취향3-5</label>
+            
+            <div class="move">
+                <button type="button" class="btn btn-primary previous">이전</button>
+                <button type="button" class="btn btn-primary next">다음</button>
+            </div><!--move end-->
+        </div><!--content end-->
+    </div><!--container end-->
+
+
+{% endblock %}

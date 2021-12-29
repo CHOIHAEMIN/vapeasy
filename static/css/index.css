@@ -1,3 +1,6 @@
+.container{
+    height: 115vh;
+}
 .mysurvey{
     position: relative;
     width: 100%;
@@ -8,6 +11,7 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.3;
+    transform: scale(0.9);
 }
 .survey_button{
     position: absolute;
@@ -35,7 +39,6 @@
     height: 100%;
 }
 .current_review{
-    border: 3px solid red;
     width: 25%;
     height: 100%;
 }

@@ -1,16 +1,13 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio_review_list</title>
-    <link rel="stylesheet" href="{% static 'portfolio_review_list.css' %}">
-</head>
-<body>
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/review_list.css' %}">
     <div class="container">
         <div class="content">
+            <div class="text">
+                <p>리뷰</p>
+            </div>
+    
             <table class="table">
                 <thead>
                     <tr>
@@ -34,5 +31,4 @@
             </table>
         </div><!--content end-->
     </div><!--contatiner end-->
-</body>
-</html>
+{% endblock %}
