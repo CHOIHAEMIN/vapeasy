@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import Review
 from .forms import ReviewForm
 # Create your views here.
@@ -12,8 +13,11 @@ def survey(request):
     return render(request, 'common/survey.html')
 
 def review_list(request):
+    page = request.GET.get('page', '1')
     review_list = Review.objects.order_by('-create_date')
-    context = {'review_list': review_list}
+    paginator = Paginator(review_list, 15)
+    page_obj = paginator.get_page(page)
+    context = {'review_list': page_obj}
     return render(request, 'vapeasy/review_list.html', context)
 
 def review_datail(request, review_id):

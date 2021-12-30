@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
+{% load vapeasy_filter %}
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/review_list.css' %}">
     <div class="container">
+
         <div class="content">
             <div class="text">
-                <p>리뷰</p>
+                <p>Review</p>
             </div><!--리뷰 text end-->
+
             <div class="button">
                 <a href="{% url 'vapeasy:review_create' %}" class="btn btn-primary">리뷰 작성</a>
             </div><!--리뷰작성 button end-->
     
-            <table class="table">
+            <table class="mytable">
                 <thead>
                     <tr>
-                        <th class="head num">번호</th>
-                        <th class="head title">제목</th>
-                        <th class="head date">작성일자</th>
+                        <th class="myhead mynum">번호</th>
+                        <th class="myhead mytitle">제목</th>
+                        <th class="myhead mydate">작성일자</th>
                     </tr>
                 </thead>
 
@@ -24,14 +27,45 @@
                     {% if review_list %}
                         {% for review in review_list %}
                     <tr>
-                        <td>{{ review.id }}</td>
-                        <td><a href="{% url 'vapeasy:review_detail' review.id %}">{{ review.subject }}</a></td>
-                        <td>{{ review.create_date }}</td>
+                        <td class="center num">{{ review_list.paginator.count|sub:review_list.start_index|sub:forloop.counter0|add:1 }}</td>
+                        <td><a class="review_subject" href="{% url 'vapeasy:review_detail' review.id %}">{{ review.subject }}</a></td>
+                        <td class="date">{{ review.create_date }}</td>
                     </tr>
                         {% endfor %}
                     {% endif %}
                 </tbody>
             </table>
+            <!-- 페이징처리 시작 -->
+            <div aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <!-- 이전페이지 -->
+                  {% if review_list.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ review_list.previous_page_number }}">이전</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" tableindex="-1" aria-disabled="true" href="#">이전</a></li>
+                  {% endif %}
+
+                  <!--페이지리스트-->
+                  {% for page_number in review_list.paginator.page_range %}
+                    {% if page_number >= review_list.number|add:-5 and page_number <= review_list.number|add:5 %}
+                        {% if page_number == review_list.number %}           
+                            <li class="page-item active" aira-current='page'><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>                  
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                  {% endfor %}
+
+                  <!--다음페이지-->
+                  {% if review_list.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ review_list.next_page_number }}">다음</a></li>
+                  {% else %}
+                  <li class="page-item"><a class="page-link disabled" tableindex="-1" aria-disabled="true" href="#">다음</a></li>
+                  {% endif %}
+                </ul>
+                <!--페이징처리 끝-->
+            </div><!--부트스트랩 페이지네이션 end-->
         </div><!--content end-->
+        
     </div><!--contatiner end-->
 {% endblock %}

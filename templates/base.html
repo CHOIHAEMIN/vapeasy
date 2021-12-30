@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAPEASY</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!--
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
@@ -20,7 +22,11 @@
             <div class="menu"><a href="{% url 'vapeasy:survey' %}">SURVEY</a></div>
             <div class="menu"><a href="#">PRODUCT</a></div>
             <div class="menu"><a href="{% url 'vapeasy:review_list' %}">REVIEW</a></div>
-            <div class="menu"><a href="#">SIGN IN</a></div>
+            {% if user.is_authenticated %}
+                <div class="menu"><a href="{% url 'common:signout' %}">{{ user.username }} (SIGN OUT)</a></div>
+            {% else %}
+                <div class="menu"><a href="{% url 'common:signin' %}">SIGN IN</a></div>
+            {% endif %}
         </div><!--네비 div 끝-->
 
 <!-- 기본 템플릿 안에 삽입될 내용 start-->

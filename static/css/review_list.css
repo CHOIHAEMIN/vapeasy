@@ -1,42 +1,56 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 /*12/14 최해민 content 위치조정 및 container 사이즈 조절*/
 /*container div */
 .container{
     width: 100%;
     height: 50rem;
     display: flex;
-    justify-content: center;
-    border: 3px solid black;
+    flex-direction: column;
+    align-items: center;
 }
 .text{
+    display: block;
+    width: 100%;
     font-size: 2rem;
     font-weight: bold;
     color: black;
+    margin: 2rem 0;
+    border-bottom: 1px solid #212529;
 }
 .content{
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100%;
-    border: 3px solid purple;
+    border: 1px solid #003366;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px lightgrey;
+    background-color: #e6ffff;
+    padding-bottom: 10rem;
 }
-.table{
-    width: 100%;
+.mytable{
+    margin: 1rem;
+    border: 2px solid lightgrey;
+    border-radius: 3px;
+    background-color: white;
 }
-.head{
+.review_subject{
+    color: #212529;
+}
+.myhead{
     height: 3rem;
-    border: 3px solid red;
 }
-.num{
+.mynum{
+    width: 5%;
+}
+.mydate{
     width: 10%;
-}
-.date{
-    width: 20%;
     min-width: min-content;
+}
+td{
+  height: 3rem;
+  border-bottom: 0.1rem solid lightgrey;
+}
+.center{
+  text-align: center;
 }
 .button{
     margin-left: auto;
@@ -60,6 +74,7 @@
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 1rem;
   }
   
   @media (prefers-reduced-motion: reduce) {
@@ -128,3 +143,99 @@
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
   }
   
+
+/* 부트스트랩 페이지네이션 */
+.pagination {
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.page-link:focus {
+  z-index: 3;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.pagination-lg .page-link {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.pagination-lg .page-item:first-child .page-link {
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.pagination-sm .page-item:first-child .page-link {
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+}
+.justify-content-center {
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
