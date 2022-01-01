@@ -1,14 +1,18 @@
 
-body {
+.mycontainer {
+  width: 100%;
   display: -ms-flexbox;
   -ms-flex-align: center;
+  justify-content: center;
   align-items: center;
   align-content: center;
   background-color: #f5f5f5;
 }
-.justify-content-center {
-  -ms-flex-pack: center !important;
-  justify-content: center !important;
+.signin-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .form-signin {
   width: 100%;

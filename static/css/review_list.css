@@ -24,7 +24,8 @@
     border-radius: 3px;
     box-shadow: 3px 3px 3px lightgrey;
     background-color: #e6ffff;
-    padding-bottom: 10rem;
+    /* padding-bottom: 10rem; */
+    padding: 2rem;
 }
 .mytable{
     margin: 1rem;
@@ -47,7 +48,7 @@
 }
 td{
   height: 3rem;
-  border-bottom: 0.1rem solid lightgrey;
+  border-top: 0.1rem solid lightgrey;
 }
 .center{
   text-align: center;

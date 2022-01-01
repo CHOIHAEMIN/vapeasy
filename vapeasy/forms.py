@@ -1,5 +1,5 @@
 from django import forms
-from vapeasy.models import Review
+from vapeasy.models import Review, Comment
 
 
 class ReviewForm(forms.ModelForm):
@@ -17,3 +17,8 @@ class ReviewForm(forms.ModelForm):
             'subject' : '제목',
             'content' : '내용'
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']

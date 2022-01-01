@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/review_detail.css' %}">
+    <div class="detailcontainer">
+        <div class="mydetail">
+            <div class="mytitle">
+                <div class="subject">
+                    {{ review.subject }}<!--리뷰 제목-->
+
+                    <!--리뷰수정, 삭제 버튼 제목과 같은 위치로 이동하기 위함-->
+                    <!--리뷰 수정-->
+                    {% if request.user == review.author %}
+                    <a href="{% url 'vapeasy:review_modify' review.id %}"
+                    class="btn btn-primary modify">수정</a>
+                    {% endif %}
+                    <!--리뷰 수정 end-->
+
+                    <!--리뷰 삭제-->
+                    {% if request.user == review.author %}
+                    <a data-uri="{% url 'vapeasy:review_delete' review.id %}"
+                    class="btn btn-primary delete">삭제</a>
+                    {% endif %}
+                    <!--리뷰 삭제 end-->
+
+                </div><!--리뷰 제목 div end -->
+                <div class="author">{{ review.author }}</div>
+                <!--작성&수정 날짜 하나로 합침-->
+                {% if review.modify_date %}
+                <div class="create_date">
+                    <label>{{ review.modify_date }} "수정됨"<label>
+                </div>
+                {% else %}
+                <div class="create_date">{{ review.create_date }}</div>
+                {% endif %}
+            </div>
+            <div class="content">{{ review.content }}</div>
+
+            <!--댓글기능 시작-->
+            {% if review.comment_set.count > 0 %}
+                <label class="comment-count">댓글 총 몇개</label>
+                {% for comment in review.comment_set.all %}
+                    <div class="comment">
+                        <div class="comment-title">
+                            <span class="comment-username">{{ comment.author }}</span>
+                            <!--작성&수정날짜 한번만 띄우기-->
+                            {% if comment.modify_date %}
+                            <span class="comment-date">{{ comment.modify_date }} "수정됨"</span>
+                            {% else %}
+                            <span class="comment-date">{{ comment.create_date }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="comment-content"><span>{{ comment.content }}</span></div>
+                        {% if comment.author == request.user %}
+                            <div class="comment-btn">
+                                <a href="#" class="comment-modify" data-uri="{% url 'vapeasy:comment_modify_review' comment.id %}">수정</a>
+                                <a href="#" class="comment-delete" data-uri="{% url 'vapeasy:comment_delete_review' comment.id %}">삭제</a>
+                            </div>
+                        {% endif %}
+                    </div><!--comment div end-->
+                {% endfor %}
+            {% endif %}
+            <!--댓글기능 end-->
+        </div><!--리뷰 내용 detail div end-->
+        <form action="{% url 'vapeasy:comment_create_review' review.id %}" method="POST" id="comment-write" class="comment-write">
+            {% csrf_token %}
+            <textarea name="write-field" id="write-field" class="write-field"></textarea>
+            <input type="submit" value="댓글등록" class="comment-button">
+        </form>
+    </div><!--container end-->
+{% endblock %}
+
+
+{% block script %}
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $(".delete").on('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = $(this).data('uri');
+            }
+        });
+    });
+</script>
+{% endblock %}

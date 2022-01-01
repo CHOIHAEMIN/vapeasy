@@ -33,6 +33,7 @@ html, body{
     justify-content: space-around;
     height: 5vh;
     margin-bottom: 0.2rem;
+    background-color: white;
 }
 .menu{
     margin: 0 1rem;

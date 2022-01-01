@@ -1,37 +1,103 @@
-.signup{
+*{
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+.detailcontainer{
     width: 100%;
-    height: 80%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    /* margin-top: 2rem; */
 }
-form{
-    border: .1rem solid grey;
+.mydetail{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .1rem solid lightgrey;
     border-radius: 1rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem lightgrey;
-    padding: 0 1rem;
-    margin: 1rem 0;
-    background-color: #f5f5f5;
+    margin: 2rem 0;
+    padding: 3rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px lightgrey;
 }
-label{
-    width: 25%;
-    border-radius: 0.3rem;
-    line-height: 3rem;
+.subject{
+    font-size: 2.5em;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.author{
+    font-size: 1.5em;
+    text-align: end;
+}
+.create_date{
+    text-align: end;
+}
+.mytitle{
+    width: 100%;
+    border-bottom: .1rem solid lightgrey;
+}
+.mytitle > div{
+    margin: 1rem 0;
+}
+.content{
+    width: 100%;
+    min-height: 40vh;
+    padding: 3rem;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 3rem;
+    border-bottom: .1rem solid lightgrey;
+}
+.comment:first-child{
+    border-top: .1rem dashed lightgrey;
+}
+.comment:last-child{
+    border: none
+}
+.comment-count{
+    display: inline-block;
+    margin-bottom: 2rem;
     font-weight: bold;
 }
-input{
-    width: 100%;
-    height: 2rem;
+.comment-username{
+    font-size: 1.5em;
 }
-.signup_button{
-    width: 100%;
-    margin: 1rem 0;
+.comment-content{
+    margin: 0.5rem 0;
 }
-
+.comment-btn{
+    margin-left: auto;
+}
+.comment-write{
+    width: 90%;
+    border: .1rem solid lightgrey;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    padding: 1rem 3rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.write-field{
+    width: 100%;
+    min-height: 10rem;
+    margin-bottom: 1rem;
+    border-color: lightgrey;
+    resize: none;
+}
+.write-field:focus{
+    border: .2rem solid grey;
+}
+/* 부트스트랩 버튼 */
 .btn {
     display: inline-block;
-    width: 100%;
     font-weight: 400;
     color: #212529;
     text-align: center;
@@ -47,9 +113,6 @@ input{
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-.previous{
-    margin-right: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
