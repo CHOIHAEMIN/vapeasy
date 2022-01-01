@@ -54,7 +54,7 @@
                         {% if comment.author == request.user %}
                             <div class="comment-btn">
                                 <a href="#" class="comment-modify" data-uri="{% url 'vapeasy:comment_modify_review' comment.id %}">수정</a>
-                                <a href="#" class="comment-delete" data-uri="{% url 'vapeasy:comment_delete_review' comment.id %}">삭제</a>
+                                <a href="{% url 'vapeasy:comment_delete_review' comment.id %}" class="comment-delete" data-uri="">삭제</a>
                             </div>
                         {% endif %}
                     </div><!--comment div end-->
@@ -62,9 +62,9 @@
             {% endif %}
             <!--댓글기능 end-->
         </div><!--리뷰 내용 detail div end-->
-        <form action="{% url 'vapeasy:comment_create_review' review.id %}" method="POST" id="comment-write" class="comment-write">
+        <form action="{% url 'vapeasy:comment_create_review' review.id %}" method="POST" class="comment-write">
             {% csrf_token %}
-            <textarea name="write-field" id="write-field" class="write-field"></textarea>
+            <textarea name="content" id="content"class="write-field" requierd>{{ form.content.value|default_if_none:'' }}</textarea>
             <input type="submit" value="댓글등록" class="comment-button">
         </form>
     </div><!--container end-->

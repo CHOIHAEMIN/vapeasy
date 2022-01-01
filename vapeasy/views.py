@@ -46,7 +46,7 @@ def review_modify(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     if request.user != review.author:
         messages.error(request, '수정권한이 없습니다.')
-        return redirect('vapeasy:detail', review_id=review.id)
+        return redirect('vapeasy:review_detail', review_id=review.id)
 
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review)
@@ -55,7 +55,7 @@ def review_modify(request, review_id):
             review.author = request.user
             review.modify_date = timezone.now()
             review.save()
-            return redirect('vapeasy:detail', review_id=review.id)
+            return redirect('vapeasy:review_detail', review_id=review.id)
         
     else:
         form = ReviewForm(instance=review)
@@ -82,14 +82,18 @@ def comment_create_review(request, review_id):
         comment.create_date = timezone.now()
         comment.review = review
         comment.save()
-    return redirect('vapeasy:review_detail', review_id=review.id)
+        return redirect('vapeasy:review_detail', review_id=review.id)
+    else:
+        form = CommentForm()
+        context = {'form': form}
+        return redirect('vapeasy:review_detail', review_id=review.id)
 
 @login_required(login_url='common:login')
 def comment_modify_review(request, review_id):
     comment = get_object_or_404(Review, pk=review_id)
     if request.user != comment.author:
         messages.error(request, '댓글 수정권한이 없습니다.')
-        return redirect('vapeasy:detail', review_id=comment.review.id)
+        return redirect('vapeasy:review_detail', review_id=comment.review.id)
 
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
@@ -98,14 +102,14 @@ def comment_modify_review(request, review_id):
             comment.author = request.user
             comment.modify_date = timezone.now()
             comment.save()
-            return redirect('vapeasy:detail', review_id=comment.review.id)
+            return redirect('vapeasy:review_detail', review_id=comment.review.id)
 
 @login_required(login_url='common:login')
 def comment_delete_review(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
         messages.error(request, '댓글 삭제권한이 없습니다')
-        return redirect('vapeasy:detail', review_id=comment.review.id)
+        return redirect('vapeasy:review_detail', review_id=comment.review.id)
     else:
         comment.delete()
-    return redirect('vapeasy:detail', review_id=comment.review.id)
+    return redirect('vapeasy:review_detail', review_id=comment.review.id)
