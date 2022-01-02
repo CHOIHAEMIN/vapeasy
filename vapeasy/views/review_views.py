@@ -1,25 +1,38 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
 from django.utils import timezone
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Review, Comment
-from .forms import ReviewForm, CommentForm
-# Create your views here.
-
-def index(request):
-    return render(request, 'index.html')
-
-def survey(request):
-    return render(request, 'common/survey.html')
+from django.db.models import Q, Count
+from ..models import Review, Comment
+from ..forms import ReviewForm
 
 def review_list(request):
-    page = request.GET.get('page', '1')
-    review_list = Review.objects.order_by('-create_date')
+    # 입력 param
+    page = request.GET.get('page', '1') #페이지
+    kw = request.GET.get('kw', '') #검색어
+    so = request.GET.get('so', '') # 정렬기준
+    # 정렬
+    if so == 'recommend':
+        review_list = Review.objects.annotate(num_voter=Count('voter')).order_by('-num_voter', '-create_date')
+    elif so == 'popular':
+        review_list = Review.objects.annotate(num_comment=Count('comment')).order_by('-num_comment', '-create_date')
+    else:
+        review_list = Review.objects.order_by('-create_date')
+        
+    # 검색
+    # review_list = Review.objects.order_by('-create_date')
+    if kw:
+        review_list = review_list.filter(
+            Q(subject__icontains=kw) | # 제목검색
+            Q(content__icontains=kw) |  # 내용검색
+            Q(author__username__icontains=kw) | # 리뷰 글쓴이검색
+            Q(comment__author__username__icontains=kw) # 댓글 글쓴이검색
+        ).distinct()
+    # 페이징처리
     paginator = Paginator(review_list, 15)
     page_obj = paginator.get_page(page)
-    context = {'review_list': page_obj}
+    context = {'review_list': page_obj, 'page':page, 'kw':kw, 'so': so}
     return render(request, 'vapeasy/review_list.html', context)
 
 def review_datail(request, review_id):
@@ -70,46 +83,3 @@ def review_delete(request, review_id):
         return redirect('vapeasy:review_detail', review_id=review.id)
     review.delete()
     return redirect('vapeasy:review_list')
-
-@login_required(login_url='common:signin')
-def comment_create_review(request, review_id):
-    review = get_object_or_404(Review, pk=review_id)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.author = request.user
-        comment.create_date = timezone.now()
-        comment.review = review
-        comment.save()
-        return redirect('vapeasy:review_detail', review_id=review.id)
-    else:
-        form = CommentForm()
-        context = {'form': form}
-        return redirect('vapeasy:review_detail', review_id=review.id)
-
-@login_required(login_url='common:login')
-def comment_modify_review(request, review_id):
-    comment = get_object_or_404(Review, pk=review_id)
-    if request.user != comment.author:
-        messages.error(request, '댓글 수정권한이 없습니다.')
-        return redirect('vapeasy:review_detail', review_id=comment.review.id)
-
-    if request.method == "POST":
-        form = CommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
-            comment.modify_date = timezone.now()
-            comment.save()
-            return redirect('vapeasy:review_detail', review_id=comment.review.id)
-
-@login_required(login_url='common:login')
-def comment_delete_review(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    if request.user != comment.author:
-        messages.error(request, '댓글 삭제권한이 없습니다')
-        return redirect('vapeasy:review_detail', review_id=comment.review.id)
-    else:
-        comment.delete()
-    return redirect('vapeasy:review_detail', review_id=comment.review.id)

@@ -9,6 +9,7 @@ class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_author')
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
+    voter = models.ManyToManyField(User, related_name='voter_review')
     def __str__(self):
         return self.subject
     
@@ -18,3 +19,5 @@ class Comment(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     review = models.ForeignKey(Review, null=True, blank=True, on_delete=models.CASCADE)
+    voter = models.ManyToManyField(User, related_name='voter_comment')
+

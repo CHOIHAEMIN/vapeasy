@@ -1,13 +1,21 @@
 *{
     box-sizing: border-box;
+    outline: none;
     margin: 0;
     padding: 0;
 }
-.container{
+.body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+.survey-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
     height: 100vh;
 }
 /*질문 내용*/
@@ -16,27 +24,28 @@
     border-radius: 1rem;
     display: flex;
     align-content: center;
-    width: 80%;
-    height: 10rem;
+    width: 100%;
+    padding: 2rem 2rem;
 }
 .question h1{
     margin: auto;
 }
 /*선택사항*/
 .content{
-    width: 80%;
+    width: 100%;
 }
 .option{
     display: block;
     border: .1rem solid grey;
     border-radius: 1rem;
     margin: 1rem 0;
-    padding: 2rem 0;
+    padding: 2rem 2rem;
 }
 input{
     margin-right: 1rem;
 }
 .move{
+    padding: 1rem 0;
     display: flex;
     justify-content: space-around;
 }

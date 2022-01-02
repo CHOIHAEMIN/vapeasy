@@ -9,16 +9,32 @@
             <div class="text">
                 <p>Review</p>
             </div><!--리뷰 text end-->
-
-            <div class="button">
-                <a href="{% url 'vapeasy:review_create' %}" class="btn btn-primary">리뷰 작성</a>
-            </div><!--리뷰작성 button end-->
-    
+            <div class="list-navbar">
+                <div class="mysearch">
+                    <!--검색창-->
+                    <input type="text" class="kw" value="{{ kw|default_if_none:'' }}">
+                    <button class="searchbtn" type="button">검색</button>
+                    <!--검색창 end-->
+                    <br>
+                    <!--정렬창-->
+                    <select class="so">
+                        <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
+                        <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>추천순</option>
+                        <option value="popular" {% if so == 'popular' %}selected{% endif %}>댓글순</option>
+                    </select>
+                    <!--정렬창 end-->
+                </div>
+                <div class="button">
+                    <a href="{% url 'vapeasy:review_create' %}" class="btn btn-primary">리뷰 작성</a>
+                </div><!--리뷰작성 button end-->
+            </div>
             <table class="mytable">
                 <thead>
                     <tr>
                         <th class="myhead mynum">번호</th>
+                        <th class="myhead myvote">추천수</th>
                         <th class="myhead mytitle">제목</th>
+                        <th class="myhead myauthor">작성자</th>
                         <th class="myhead mydate">작성일자</th>
                     </tr>
                 </thead>
@@ -28,7 +44,17 @@
                         {% for review in review_list %}
                     <tr>
                         <td class="center num">{{ review_list.paginator.count|sub:review_list.start_index|sub:forloop.counter0|add:1 }}</td>
-                        <td><a class="review_subject" href="{% url 'vapeasy:review_detail' review.id %}">{{ review.subject }}</a></td>
+                        <td class="center votenum">
+                            {% if review.voter.all.count > 0 %}
+                            {{ review.voter.all.count }}
+                            {% endif %}
+                        </td>
+                        <td><a class="review_subject" href="{% url 'vapeasy:review_detail' review.id %}">{{ review.subject }}</a>
+                        {% if review.comment_set.count > 0 %}
+                        <a class="comment-count-num">+{{ review.comment_set.count }}</a>
+                        {% endif %}
+                        </td>
+                        <td class="center authorname">{{ review.author}}</td>
                         <td class="date">{{ review.create_date }}</td>
                     </tr>
                         {% endfor %}
@@ -40,7 +66,7 @@
                 <ul class="pagination justify-content-center">
                   <!-- 이전페이지 -->
                   {% if review_list.has_previous %}
-                  <li class="page-item"><a class="page-link" href="?page={{ review_list.previous_page_number }}">이전</a></li>
+                  <li class="page-item"><a class="page-link" data-page="{{ review_list.previous_page_number }}" href="#">이전</a></li>
                   {% else %}
                   <li class="page-item disabled"><a class="page-link" tableindex="-1" aria-disabled="true" href="#">이전</a></li>
                   {% endif %}
@@ -49,23 +75,53 @@
                   {% for page_number in review_list.paginator.page_range %}
                     {% if page_number >= review_list.number|add:-5 and page_number <= review_list.number|add:5 %}
                         {% if page_number == review_list.number %}
-                            <li class="page-item active" aira-current='page'><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>                  
+                            <li class="page-item active" aira-current='page'><a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a></li>                  
                         {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                            <li class="page-item"><a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a></li>
                         {% endif %}
                     {% endif %}
                   {% endfor %}
 
                   <!--다음페이지-->
                   {% if review_list.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ review_list.next_page_number }}">다음</a></li>
+                    <li class="page-item"><a class="page-link" data-page="{{ review_list.next_page_number }}" href="#">다음</a></li>
                   {% else %}
                   <li class="page-item"><a class="page-link disabled" tableindex="-1" aria-disabled="true" href="#">다음</a></li>
                   {% endif %}
                 </ul>
                 <!--페이징처리 끝-->
             </div><!--부트스트랩 페이지네이션 end-->
+            
+            <!--page와 kw를 동시에 GET방식으로 폼 던지기-->
+            <form id="searchForm" method="get" action="{% url 'vapeasy:review_list' %}">
+                <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+                <input type="hidden" id="page" name="page" value="{{ page }}">
+                <input type="hidden" id="so" name="so" value="{{ so }}">
+            </form>
         </div><!--content end-->
         
     </div><!--contatiner end-->
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $(".page-link").on('click', function(){
+            $("#page").val($(this).data("page"));
+            $("#searchForm").submit();
+        });
+
+        $(".searchbtn").on('click', function(){
+            $("#kw").val($(".kw").val());
+            $("#page").val(1);
+            $("#searchForm").submit();
+        });
+
+        $(".so").on('change', function(){
+            $("#so").val($(this).val());
+            $("#page").val(1);
+            $("#searchForm").submit();
+        });
+
+    });
+</script>
 {% endblock %}

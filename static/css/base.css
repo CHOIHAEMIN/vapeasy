@@ -1,3 +1,4 @@
+@import url(//db.onlinewebfonts.com/c/67680f2eb947c5cbd58b40961b4a61e9?family=Apple+SD+Gothic+Neo);
 *{
     box-sizing: border-box;
     outline: none;
@@ -19,7 +20,7 @@ html, body{
     align-items: center;
     font-size: 3rem;
     font-weight: bold;
-    height: 15vh;
+    height: 18vh;
     background-color: #003366;
 }
 .mybanner > div > a{

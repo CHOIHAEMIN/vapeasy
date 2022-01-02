@@ -2,6 +2,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/review_detail.css' %}">
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <div class="detailcontainer">
         <div class="mydetail">
             <div class="mytitle">
@@ -36,10 +37,20 @@
             </div>
             <div class="content">{{ review.content }}</div>
 
+            <!--리뷰 추천 기능-->
+            <div class="review-vote">
+                <a class="vote-button" href="{% url 'vapeasy:vote_review' review.id %}" data-uri="{% url 'vapeasy:vote_review' review.id %}">
+                    <p class="vote-count">{{ review.voter.count }}</p>
+                    <i class="xi-thumbs-up vote-thumb"></i>
+                </a>
+            </div>
+            <!--리뷰 추천 기능 끝-->
+
             <!--댓글기능 시작-->
             {% if review.comment_set.count > 0 %}
-                <label class="comment-count">댓글 총 몇개</label>
+                <label class="comment-count">댓글 총 {{ review.comment_set.count }}건</label>
                 {% for comment in review.comment_set.all %}
+                    <a name="comment_{{ comment.id }}"></a>
                     <div class="comment">
                         <div class="comment-title">
                             <span class="comment-username">{{ comment.author }}</span>
@@ -51,22 +62,52 @@
                             {% endif %}
                         </div>
                         <div class="comment-content"><span>{{ comment.content }}</span></div>
+                        
+                        <!--댓글 추천 기능-->
+                        <div class="comment-vote">
+                            <a class="vote-button" href="{% url 'vapeasy:vote_comment' comment.id %}" data-uri="{% url 'vapeasy:vote_comment' comment.id %}">
+                                <p class="vote-comment-count">
+                                    {% if comment.voter.count > 0 %}
+                                    {{ comment.voter.count }}
+                                    {% endif %}
+                                    추천
+                                </p>
+                            </a>
+                        </div>
+                        <!--댓글 추천 기능 끝-->
+                        
+                        <!--댓글 수정 삭제 버튼-->
                         {% if comment.author == request.user %}
                             <div class="comment-btn">
-                                <a href="#" class="comment-modify" data-uri="{% url 'vapeasy:comment_modify_review' comment.id %}">수정</a>
-                                <a href="{% url 'vapeasy:comment_delete_review' comment.id %}" class="comment-delete" data-uri="">삭제</a>
+                                <a class="comment-modify">수정</a>
+                                <a href="#" class="comment-delete" data-uri="{% url 'vapeasy:comment_delete_review' comment.id %}">삭제</a>
                             </div>
+                            <!--댓글 수정버튼 클릭시 템플릿에서 폼 띄우기-->
+                            <form action="{% url 'vapeasy:comment_modify_review' comment.id %}" method="POST" class="comment-modify-form"
+                            style="display: none;">
+                                {% csrf_token %}
+                                <textarea name="content" id="content"class="write-field" requierd>{{ form.content.value|default_if_none:'' }}</textarea>
+                                <input type="submit" value="댓글수정" class="comment-modify-button">
+                            </form>
+
                         {% endif %}
+                        
+                
+
                     </div><!--comment div end-->
                 {% endfor %}
             {% endif %}
             <!--댓글기능 end-->
         </div><!--리뷰 내용 detail div end-->
+
+        <!--댓글 폼 템플릿에서 받기-->
+        {% if user.is_authenticated %}
         <form action="{% url 'vapeasy:comment_create_review' review.id %}" method="POST" class="comment-write">
             {% csrf_token %}
             <textarea name="content" id="content"class="write-field" requierd>{{ form.content.value|default_if_none:'' }}</textarea>
             <input type="submit" value="댓글등록" class="comment-button">
         </form>
+        {% endif %}
     </div><!--container end-->
 {% endblock %}
 
@@ -74,11 +115,34 @@
 {% block script %}
 <script type='text/javascript'>
     $(document).ready(function(){
+        /*리뷰 삭제*/
         $(".delete").on('click', function() {
             if(confirm("정말로 삭제하시겠습니까?")) {
                 location.href = $(this).data('uri');
             }
         });
+
+        /* 댓글 삭제*/
+        $(".comment-delete").on('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = $(this).data('uri');
+            }
+        });
+
+        /* 댓글 수정*/
+        $(".comment-modify-button").on('click', function() {
+            if(confirm("정말로 수정하시겠습니까?")) {
+                location.href = $(this).data('uri');
+            }
+        });
+
+        /* 댓글 수정 폼 토글하기*/
+        $(".comment-modify").click(function(){
+            $(".comment-modify-form").toggle();
+        });
+
+
+
     });
 </script>
 {% endblock %}
