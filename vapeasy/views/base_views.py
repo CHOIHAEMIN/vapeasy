@@ -4,6 +4,6 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
-def survey(request):
-    return render(request, 'common/survey.html')
+# def survey(request):
+#     return render(request, 'common/survey.html')
 

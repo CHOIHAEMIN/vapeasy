@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/survey_list.css' %}">
+
+<div class="survey-container">
+    <form action="" method="POST">
+        <div class="survey-content">
+            <p class="survey-question content">{{ survey.question }}</p>
+            <label class="option content"><input type="checkbox">{{ survey.answer1 }}</label>
+            <label class="option content"><input type="checkbox">{{ survey.answer2 }}</label>
+            <label class="option content"><input type="checkbox">{{ survey.answer3 }}</label>
+            <label class="option content"><input type="checkbox">{{ survey.answer4 }}</label>
+            <div>
+                <input type="submit" value="완료">
+            </div>
+        </div><!--survey-content end-->
+    </form>
+</div>
+
+{% endblock %}

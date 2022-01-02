@@ -1,24 +1,23 @@
 from django import forms
-from vapeasy.models import Review, Comment
+from vapeasy.models import Review, Comment, Survey
 
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-
         fields = ['subject', 'content']
-
-        widgets = {
-        'subject': forms.TextInput(attrs={'class': 'form-control'}),
-        'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
-        }
-
-        labels = {
-            'subject' : '제목',
-            'content' : '내용'
-        }
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+
+class SurveyForm(forms.ModelForm):
+    class Meta:
+        model = Survey
+        fields = [
+            'answer1',
+            'answer2',
+            'answer3',
+            'answer4',
+            ]

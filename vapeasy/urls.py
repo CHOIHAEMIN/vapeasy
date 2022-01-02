@@ -1,13 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import base_views, review_views, comment_views, vote_views
+from .views import base_views, review_views, comment_views, vote_views, survey_views
 
 app_name = 'vapeasy'
 
 urlpatterns = [
     # base_views.py
     path('', base_views.index, name='index'),
-    path('survey/', base_views.survey, name='survey'),
     
     # review_views.py
     path('review_list/', review_views.review_list, name='review_list'),
@@ -24,5 +23,9 @@ urlpatterns = [
     # vote_views.py
     path('vote/review/<int:review_id>/', vote_views.vote_review, name='vote_review'),
     path('vote/comment/<int:comment_id>/', vote_views.vote_comment, name='vote_comment'),
+    
+    # survey_views.py
+    path('survey/', survey_views.survey, name='survey'),
+
 
 ]

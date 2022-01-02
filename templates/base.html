@@ -20,7 +20,7 @@
 
         <div class="mynavbar">
             <div class="menu"><a href="{% url 'vapeasy:index' %}">HOME</a></div>
-            <div class="menu"><a href="{% url 'vapeasy:survey' %}">SURVEY</a></div>
+            <div class="menu"><a href="{% url 'vapeasy:survey'%}">SURVEY</a></div>
             <div class="menu"><a href="#">PRODUCT</a></div>
             <div class="menu"><a href="{% url 'vapeasy:review_list' %}">REVIEW</a></div>
             {% if user.is_authenticated %}

@@ -21,3 +21,12 @@ class Comment(models.Model):
     review = models.ForeignKey(Review, null=True, blank=True, on_delete=models.CASCADE)
     voter = models.ManyToManyField(User, related_name='voter_comment')
 
+class Survey(models.Model):
+    # 설문조사 물음내용
+    question = models.TextField(null=True)
+    
+    # 응답1~4
+    answer1 = models.TextField(null=True)
+    answer2 = models.TextField(null=True)
+    answer3 = models.TextField(null=True)
+    answer4 = models.TextField(null=True)

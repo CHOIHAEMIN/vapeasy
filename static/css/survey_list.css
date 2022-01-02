@@ -1,0 +1,31 @@
+.survey-container{
+    border: 3px solid black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+form{
+    width: 80%;
+}
+.survey-content{
+    border: 3px solid brown;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.survey-question{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.option{
+    font-size: 1.3rem;
+}
+.content{
+    border: .1rem solid lightgrey;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    text-transform: rotate(0.04deg);
+}
