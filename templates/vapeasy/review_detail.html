@@ -81,17 +81,20 @@
                             <div class="comment-btn">
                                 <a class="comment-modify">수정</a>
                                 <a href="#" class="comment-delete" data-uri="{% url 'vapeasy:comment_delete_review' comment.id %}">삭제</a>
-                            </div>
-                            <!--댓글 수정버튼 클릭시 템플릿에서 폼 띄우기-->
-                            <form action="{% url 'vapeasy:comment_modify_review' comment.id %}" method="POST" class="comment-modify-form"
-                            style="display: none;">
-                                {% csrf_token %}
-                                <textarea name="content" id="content"class="write-field" requierd>{{ form.content.value|default_if_none:'' }}</textarea>
-                                <input type="submit" value="댓글수정" class="comment-modify-button">
-                            </form>
 
+                            </div>                            
+
+                            <!--댓글 수정버튼 클릭시 템플릿에서 폼 띄우기-->
+                            <div class="show">
+                            <form action="{% url 'vapeasy:comment_modify_review' comment.id %}" method="POST" class="comment-modify-form" >
+                                {% csrf_token %}
+
+                                <textarea name="content" id="content" class="write-field" requierd >{{ form.content.value|default_if_none:'' }}</textarea>
+                                <input type="submit" value="댓글수정" class="comment-modify-button">
+
+                            </form>
+                            </div>
                         {% endif %}
-                        
                 
 
                     </div><!--comment div end-->
@@ -102,11 +105,13 @@
 
         <!--댓글 폼 템플릿에서 받기-->
         {% if user.is_authenticated %}
+
         <form action="{% url 'vapeasy:comment_create_review' review.id %}" method="POST" class="comment-write">
             {% csrf_token %}
-            <textarea name="content" id="content"class="write-field" requierd>{{ form.content.value|default_if_none:'' }}</textarea>
+            <textarea name="content" id="content" class="write-field" requierd>{{ form.content.value|default_if_none:'' }}</textarea>
             <input type="submit" value="댓글등록" class="comment-button">
         </form>
+
         {% endif %}
     </div><!--container end-->
 {% endblock %}
@@ -114,6 +119,7 @@
 
 {% block script %}
 <script type='text/javascript'>
+
     $(document).ready(function(){
         /*리뷰 삭제*/
         $(".delete").on('click', function() {
@@ -137,8 +143,10 @@
         });
 
         /* 댓글 수정 폼 토글하기*/
+
         $(".comment-modify").click(function(){
-            $(".comment-modify-form").toggle();
+            var test2 = document.querySelector(".comment-modify-form").value;
+            $(this).parents(".comment-btn").siblings().eq(3).children(".comment-modify-form").show();
         });
 
 

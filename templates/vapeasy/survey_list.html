@@ -7,10 +7,10 @@
     <form action="" method="POST">
         <div class="survey-content">
             <p class="survey-question content">{{ survey.question }}</p>
-            <label class="option content"><input type="checkbox">{{ survey.answer1 }}</label>
-            <label class="option content"><input type="checkbox">{{ survey.answer2 }}</label>
-            <label class="option content"><input type="checkbox">{{ survey.answer3 }}</label>
-            <label class="option content"><input type="checkbox">{{ survey.answer4 }}</label>
+            <label class="option content"><input type="checkbox" name="answer1" value="cigarette">{{ survey.answer1 }}</label>
+            <label class="option content"><input type="checkbox" name="answer1" value="fruit">{{ survey.answer2 }}</label>
+            <label class="option content"><input type="checkbox" name="answer1" value="dessert">{{ survey.answer3 }}</label>
+            <label class="option content"><input type="checkbox" name="answer1" value="any">{{ survey.answer4 }}</label>
             <div>
                 <input type="submit" value="완료">
             </div>

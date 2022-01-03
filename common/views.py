@@ -9,10 +9,12 @@ def signup(request):
     # 회원가입
     if request.method == "POST":
         form = UserForm(request.POST)
+        print(form)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            # name = form.cleaned_data.get('name')
             user = authenticate(username=username, password = raw_password)
             login(request, user)
             return redirect('index')
