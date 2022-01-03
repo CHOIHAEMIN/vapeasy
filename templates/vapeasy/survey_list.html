@@ -4,13 +4,16 @@
 <link rel="stylesheet" href="{% static 'css/survey_list.css' %}">
 
 <div class="survey-container">
-    <form action="" method="POST">
+    <form action="{% url 'vapeasy:survey_answer' %}" method="POST">
+        {% csrf_token %}
         <div class="survey-content">
+            {% for survey in survey_list %}
             <p class="survey-question content">{{ survey.question }}</p>
-            <label class="option content"><input type="checkbox" name="answer1" value="cigarette">{{ survey.answer1 }}</label>
-            <label class="option content"><input type="checkbox" name="answer1" value="fruit">{{ survey.answer2 }}</label>
-            <label class="option content"><input type="checkbox" name="answer1" value="dessert">{{ survey.answer3 }}</label>
-            <label class="option content"><input type="checkbox" name="answer1" value="any">{{ survey.answer4 }}</label>
+            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer1 }}">{{ survey.answer1 }}</label>
+            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer2 }}">{{ survey.answer2 }}</label>
+            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer3 }}">{{ survey.answer3 }}</label>
+            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer4 }}">{{ survey.answer4 }}</label>
+            {% endfor %}
             <div>
                 <input type="submit" value="완료">
             </div>

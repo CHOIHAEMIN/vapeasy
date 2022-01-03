@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import base_views, review_views, comment_views, vote_views, survey_views
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import base_views, review_views, comment_views, vote_views, survey_views, product_views
 
 app_name = 'vapeasy'
 
@@ -26,6 +28,12 @@ urlpatterns = [
     
     # survey_views.py
     path('survey/', survey_views.survey, name='survey'),
+    path('survey/answer/', survey_views.survey_answer, name='survey_answer'),
+
+    # product_views.py
+    path('product_list/', product_views.product_list, name='product_list'),
 
 
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+#                                       실제 파일의 위치
+# 실제 사용자에게 제공하기 위해 업로드된 파일의 url필요

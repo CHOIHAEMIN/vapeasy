@@ -23,7 +23,7 @@ def comment_create_review(request, review_id):
         context = {'form': form}
         return redirect('vapeasy:review_detail', review_id=review.id)
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:signin')
 def comment_modify_review(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -39,7 +39,7 @@ def comment_modify_review(request, comment_id):
             comment.save()
             return redirect('{}#comment_{}'.format(resolve_url('vapeasy:review_detail', review_id=comment.review.id), comment.id))
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:signin')
 def comment_delete_review(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:

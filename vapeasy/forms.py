@@ -1,5 +1,5 @@
 from django import forms
-from vapeasy.models import Review, Comment, Survey
+from vapeasy.models import Review, Comment, Survey, Answer, Product
 
 
 class ReviewForm(forms.ModelForm):
@@ -21,3 +21,13 @@ class SurveyForm(forms.ModelForm):
             'answer3',
             'answer4',
             ]
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['choice']
+        
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['image', 'name', 'sort1', 'sort2']

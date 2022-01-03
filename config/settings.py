@@ -129,3 +129,9 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+# 미디어 파일(이미지파일) 저장하기위해 위치 지정
+MEDIA_URL = "/media/"
+
+# 실제 미디어파일이 저장될 root 경로 설정
+MEDIA_ROOT = BASE_DIR / 'media'

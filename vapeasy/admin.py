@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Review, Survey
+from .models import Review, Survey, Product
 
 # Register your models here.
 
@@ -8,6 +8,11 @@ class ReviewAdmin(admin.ModelAdmin):
 
 class SurveyAdmin(admin.ModelAdmin):
     list_display = ['question', 'answer1', 'answer2', 'answer3', 'answer4']
+    
+class ProductAdmin(admin.ModelAdmin):
+    product_display = ['image', 'name', 'sort1', 'sort2']
+
 
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Survey, SurveyAdmin)
+admin.site.register(Product, ProductAdmin)

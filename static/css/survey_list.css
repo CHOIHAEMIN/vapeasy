@@ -1,5 +1,4 @@
 .survey-container{
-    border: 3px solid black;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -8,7 +7,6 @@ form{
     width: 80%;
 }
 .survey-content{
-    border: 3px solid brown;
     display: flex;
     flex-direction: column;
     width: 100%;
