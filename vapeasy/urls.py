@@ -2,11 +2,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+
+import accounts.views
 from .views import base_views, review_views, comment_views, vote_views, survey_views, product_views
 
 app_name = 'vapeasy'
 
-urlpatterns = [
+urlpatterns =  [
     # base_views.py
     path('', base_views.index, name='index'),
     
@@ -32,6 +34,10 @@ urlpatterns = [
 
     # product_views.py
     path('product_list/', product_views.product_list, name='product_list'),
+
+    # oauth/views.py
+    path('oauth/', accounts.views.oauth, name='oauth'),
+    path('kakao_login/', accounts.views.kakao_login, name='kakao_login'),
 
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
