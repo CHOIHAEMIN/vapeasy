@@ -31,6 +31,7 @@ urlpatterns =  [
     # survey_views.py
     path('survey/', survey_views.survey, name='survey'),
     path('survey/answer/', survey_views.survey_answer, name='survey_answer'),
+    path('result/', survey_views.survey_result, name='survey_result'),
 
     # product_views.py
     path('product_list/', product_views.product_list, name='product_list'),

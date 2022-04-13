@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/survey_result.css' %}">
+
+<div class="survey-container">
+    <div class="result-title">
+        <p>추천 목록</p>
+    </div>
+    <div class="product-list-container">
+        {% if recommend_products.count > 0 %}
+        {% for products in recommend_products %}
+        <div class="product"><!--product 시작-->
+            <div class="product-image">
+                <img class="myimage" src="{{ products.image.url }}" alt="{{ product.image }}">
+            </div>
+            <a class="product-name" href="#">{{ products.name }}</a>
+            <p>종류 : {{products.sort1}}</p>
+            <p>멘솔취향 : {{products.sort2}}</p>
+        </div><!--product 끝-->
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

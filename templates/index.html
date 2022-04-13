@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mfaqi7w8r8"></script>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <div class="container">
         <div class="mysurvey"><!--서베이 div-->
@@ -11,15 +12,8 @@
 
         <div class="mysection"><!--섹션 div 시작-->
             <div class="mymap"><!--맵 div-->
-                <div class="mapapi">api 붙이기</div>
-                <div>
-                    <ul>
-                        <li><a href="#">매장1</a></li>
-                        <li><a href="#">매장2</a></li>
-                        <li><a href="#">매장3</a></li>
-                        <li><a href="#">매장4</a></li>
-                    </ul>
-                </div>
+                <p>주변에 가까운 샵</p>
+                <div id="map" style="width: 100%; height: 100%;"></div>
             </div><!--맵 div 끝-->
             <div class="current_review"><!--리뷰 div-->
 <!--                <img src="#" alt="review img">-->
@@ -34,5 +28,14 @@
         </div><!--섹션 div 끝-->
 </div>
 {% endblock %}
+{% block script%}
+<script type="text/javascript">
+    var mapOptions = {
+        center: new naver.maps.LatLng(37.3595704, 127.105399),
+        zoom: 14
+    };
+    
+    var map = new naver.maps.Map('map', mapOptions);</script>
+{% endblock%}
 
 
