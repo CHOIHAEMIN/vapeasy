@@ -1,3 +1,4 @@
+from cgitb import handler
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -44,3 +45,4 @@ urlpatterns =  [
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 #                                       실제 파일의 위치
 # 실제 사용자에게 제공하기 위해 업로드된 파일의 url필요
+handler404 = 'common.views.page_not_found'
