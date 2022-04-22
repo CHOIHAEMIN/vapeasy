@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = '#dpw$s^8jxr^2#tr2=%__sf86odrcpf21*au$lx7_%cbn%--7='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['52.78.246.150', 'vapeasy.shop',]
 ALLOWED_HOSTS = ['*']
