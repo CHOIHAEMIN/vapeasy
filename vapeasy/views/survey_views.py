@@ -42,11 +42,10 @@ def survey_result(request):
     answer = Answer.objects.filter(user_id = request.user.id).values('choice')
     
     # 키밸류형태의 쿼리셋을 밸류만 잘라 json으로 밸류를 리스트로 가져옴
-    # ex) answers = answer[0]['choice'] <======= DB에서 str로 저장&읽음 원하는 쿼리셋활용이 안된다.
+    # ex) answers = answer[0]['choice'] <======= DB에서 str로 저장&읽음, 원하는 쿼리셋활용이 안된다.
     answer_json = json.loads(answer[0]['choice'])
     
-    # print(type(a))
-    recommend_products = Product.objects.filter(sort2__in = answer_json)
+    recommend_products = Product.objects.filter(sort1__in = answer_json)
     print(recommend_products)
     context = {'recommend_products': recommend_products}
     return render(request, 'vapeasy/survey_result.html', context)
