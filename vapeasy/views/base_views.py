@@ -1,8 +1,10 @@
 from django.shortcuts import render
+import logging
+logger = logging.getLogger('vapeasy')
 # Create your views here.
 
 def index(request):
-    3/0 #오류 발생
+    logger.info("INFO 레벨로 출력")
     return render(request, 'index.html')
 
 # def survey(request):

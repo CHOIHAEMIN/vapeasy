@@ -206,5 +206,9 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'vapeasy': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
     }
 }
