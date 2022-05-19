@@ -1,0 +1,45 @@
+.survey-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+form{
+    width: 80%;
+}
+.survey-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.survey-question{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.option{
+    font-size: 1.3rem;
+}
+.content{
+    border: .1rem solid lightgrey;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    text-transform: rotate(0.04deg);
+}
+.survey_submit{
+    border: .1rem solid lightgrey;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    width: 30%;
+    text-transform: rotate(0.04deg);
+    background-color: lightblue;
+    font-size: 1.3rem;
+}
+.survey_submit:hover{
+    cursor: pointer;
+    background-color: blue;
+    color: aliceblue;
+}

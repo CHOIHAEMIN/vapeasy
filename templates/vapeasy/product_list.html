@@ -18,8 +18,9 @@
                     <img class="myimage" src="{{ product.image.url }}" alt="{{ product.image }}">
                 </div>
                 <a class="product-name" href="#">{{ product.name }}</a>
-                <p>종류 : {{product.sort1}}</p>
-                <p>멘솔취향 : {{product.sort2}}</p>
+                <p>종류 : {{product.category}}</p>
+                <p>멘솔취향 : {{product.menthol}}</p>
+                <p>단맛강도 : {{product.sweet}}</p>
             </div><!--product 끝-->
             {% endfor %}
             {% endif %}

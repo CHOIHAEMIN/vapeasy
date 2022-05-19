@@ -5,37 +5,43 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <div class="container">
         <div class="mysurvey"><!--서베이 div-->
-            <img class="survey_img" src="{% static 'img/survey_img.jpg' %}" alt="survey_img">
-            <a class="survey_button" href="{% url 'vapeasy:survey' %}">나의 취향을 찾아보세요</a>
+            <a class="survey_content">취향에 맞는<br>액상을<br>추천해<br>드릴게요!</a>
+            <img class="survey_img" src="{% static 'img/vape-liquid.png' %}" alt="survey_img">
+            <a class="survey_button">EASY TOOL<br>👆</a>
         </div><!--서베이 div 끝-->
-
-
-        <div class="mysection"><!--섹션 div 시작-->
-            <div class="mymap"><!--맵 div-->
-                <p>주변에 가까운 샵</p>
-                <div id="map" style="width: 100%; height: 100%;"></div>
-            </div><!--맵 div 끝-->
-            <div class="current_review"><!--리뷰 div-->
-<!--                <img src="#" alt="review img">-->
-                <p>최근리뷰</p>
-                <p>좋아요!</p>
-            </div><!--리뷰 div 끝-->
-            <div class="brandnew"><!--신제품 div-->
-<!--                <img src="#" alt="brandnew img">-->
-                <p>신제품 알림</p>
-                <p>어떠세요?</p>
-            </div><!--신제품 div 끝-->
-        </div><!--섹션 div 끝-->
+        
 </div>
 {% endblock %}
-{% block script%}
-<script type="text/javascript">
+{% block script %}
+<!-- <script type="text/javascript">
     var mapOptions = {
         center: new naver.maps.LatLng(37.3595704, 127.105399),
         zoom: 14
     };
     
-    var map = new naver.maps.Map('map', mapOptions);</script>
-{% endblock%}
+    var map = new naver.maps.Map('map', mapOptions);</script> -->
+    <script type="text/javascript">
+        let mysurvey = document.querySelector(".mysurvey");
+        let survey_button = document.querySelector(".survey_button")
+        let survey_img = document.querySelector(".survey_img")
+        let survey_content = document.querySelector(".survey_content")
+
+        mysurvey.addEventListener("mouseover", function(){
+            survey_img.className = "img_active";
+            survey_button.className = "button_active";
+            survey_content.className = "content_active";
+        });
+
+        mysurvey.addEventListener("mouseout", function(){
+            survey_img.className = "survey_img";
+            survey_button.className = "survey_button";
+            survey_content.className = "survey_content";
+        });
+
+        mysurvey.addEventListener("click", function(){
+            location.href = "{% url 'vapeasy:survey' %}"
+        });
+    </script>
+{% endblock %}
 
 

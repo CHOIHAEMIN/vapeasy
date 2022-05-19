@@ -1,63 +1,62 @@
 .container{
-    height: 150vh;
+    width: 100%;
+    height: 68vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 
 }
+/* 서베이 */
 .mysurvey{
-    position: relative;
-    width: 100%;
-    height: 50%;
+    /* border: .1rem solid red; */
+    width: 85%;
+    height: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .survey_img{
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.3;
-    transform: scale(0.9);
+    opacity: 0.6;
+    transition: 0.5s;
 }
 .survey_button{
-    position: absolute;
-    top: 50%;
-    left: 13%;
-    z-index: 1000;
-    font-size: 2rem;
-    font-weight: bold;
-    color: grey;
-}
-.mysection{
-    width: 90%;
-    height: 40%;
-    display: flex;
-    justify-content: space-between;
-}
-.mymap{
-    display: flex;
-    flex-direction: column;
+    font-size: 5rem;
     text-align: center;
-    font-size: 1.5rem;
-    line-height: 3rem;
-    width: 50%;
-    height: 100%;
-    border: .1rem solid lightgrey;
+    transition: 0.5s;
+}
+.mysurvey:hover{
+    cursor: pointer;
+}
+.survey_content{
+    border: .25rem dashed var(--main_color);
     border-radius: 1rem;
-    box-shadow: 3px 3px 3px lightgrey;
+    text-align: center;
+    font-size: 2rem;
     padding: 1rem;
+    margin: 1rem;
+    display: none;
+    transition: 0.5s;
 }
-.current_review{
-    width: 20%;
-    height: 100%;
-    border: .1rem solid lightgrey;
-    border-radius: 1rem;
-    box-shadow: 3px 3px 3px lightgrey;
-
+/* 서베이에 마우스오버 시에 효과를 주기 위한 코드 */
+.img_active{
+    height: 105%;
+    opacity: 1;
+    transition: 0.5s;
 }
-.brandnew{
-    width: 20%;
-    height: 100%;
-    border: .1rem solid lightgrey;
+.button_active{
+    font-size: 5.5rem;
+    text-align: center;
+    transition: 0.5s;
+    color: #00FFAB;
+}
+.content_active{
+    border: .25rem dashed var(--main_color);
     border-radius: 1rem;
-    box-shadow: 3px 3px 3px lightgrey;
-
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+    display: inline;
 }

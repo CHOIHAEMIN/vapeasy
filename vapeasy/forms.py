@@ -20,14 +20,16 @@ class SurveyForm(forms.ModelForm):
             'answer2',
             'answer3',
             'answer4',
+            'answer5',
             ]
 
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
+        # fields = ['category', 'menthol', 'sweet']
         fields = ['choice']
         
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['image', 'name', 'sort1', 'sort2']
+        fields = ['image', 'name', 'category', 'menthol', 'sweet']

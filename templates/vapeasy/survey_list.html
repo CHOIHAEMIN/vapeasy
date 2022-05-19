@@ -13,6 +13,7 @@
             <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer2 }}">{{ survey.answer2 }}</label>
             <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer3 }}">{{ survey.answer3 }}</label>
             <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer4 }}">{{ survey.answer4 }}</label>
+            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer5 }}">{{ survey.answer5 }}</label>
             {% endfor %}
             <input type="submit" class="survey_submit" value="완료">
         </div><!--survey-content end-->
@@ -20,3 +21,16 @@
 </div>
 
 {% endblock %}
+
+{% block script %}
+<script>
+
+let input_option = document.getElementsByTagName('input')[0].value;
+for (i=0; i<=20; i++){
+    if(document.getElementsByTagName('input')[i].value == 'None'){
+        document.getElementsByTagName('label')[i-1].style.display = 'None';
+        // alert(i);
+    };
+};
+</script>
+{% endblock%}

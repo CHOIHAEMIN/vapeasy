@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAPEASY</title>
-    <!--
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 </head>
@@ -20,7 +17,10 @@
 
         <div class="mynavbar">
             <div class="menu"><a href="{% url 'vapeasy:index' %}">HOME</a></div>
-            <div class="menu"><a href="{% url 'vapeasy:kakao_login' %}"><button>카카오 로그인</button></a></div>
+            {% if user.is_authenticated %}
+            {% else %}
+            <div class="menu"><a href="{% url 'vapeasy:kakao_login' %}">카카오 로그인</a></div>
+            {% endif %}
             <div class="menu"><a href="{% url 'vapeasy:survey' %}">SURVEY</a></div>
             <div class="menu"><a href="{% url 'vapeasy:product_list' %}">PRODUCT</a></div>
             <div class="menu"><a href="{% url 'vapeasy:review_list' %}">REVIEW</a></div>

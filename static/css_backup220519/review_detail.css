@@ -1,0 +1,262 @@
+*{
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+.detailcontainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mydetail{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .1rem solid lightgrey;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    padding: 3rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px lightgrey;
+}
+.subject{
+    font-size: 2.5em;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.author{
+    font-size: 1.5em;
+    text-align: end;
+}
+.create_date{
+    text-align: end;
+}
+.mytitle{
+    width: 100%;
+    border-bottom: .1rem solid lightgrey;
+}
+.mytitle > div{
+    margin: 1rem 0;
+}
+.content{
+    width: 100%;
+    min-height: 40vh;
+    padding: 3rem;
+}
+/* 추천기능 */
+.review-vote{
+    border: .1rem solid none;
+    border-radius: 1rem;
+    width: 4rem;
+    height: 4rem;
+    background-color: #003366;
+    box-shadow: 3px 3px 3px lightgrey;
+    margin: 2rem 0;
+}
+.comment-vote{
+    border: .1rem solid none;
+    border-radius: 1rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: grey;
+    box-shadow: 3px 3px 3px lightgrey;
+    margin: 2rem 0;
+    margin-left: auto;
+    padding: 0.5rem;
+}
+.vote-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+.vote-count{
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.vote-thumb{
+    font-size: 1.3em;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 3rem;
+    border-bottom: .1rem solid lightgrey;
+}
+.comment:last-child{
+    border-bottom: none;
+}
+.comment-count{
+    width: 100%;
+    display: block;
+    padding: 1rem 0;
+    font-weight: bold;
+    border-top: .1rem dashed lightgrey;
+
+}
+.comment-username{
+    font-size: 1.5em;
+}
+.comment-content{
+    margin: 0.5rem 0;
+}
+.comment-btn{
+    margin-left: auto;
+    margin-bottom: 1rem;
+}
+.comment-modify{
+    border: .1rem solid none;
+    border-radius: 1rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(0, 255, 0, 0.7);
+    color: white;
+    box-shadow: 3px 3px 3px lightgrey;
+    margin: 2rem 0;
+    padding: 0.5rem;
+}
+.comment-modify:hover{
+    cursor: pointer;
+}
+.comment-delete{
+    border: .1rem solid none;
+    border-radius: 1rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    box-shadow: 3px 3px 3px lightgrey;
+    margin: 2rem 0;
+    padding: 0.5rem;
+}
+.comment-write{
+    width: 90%;
+    border: .1rem solid lightgrey;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem 3rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.write-field{
+    width: 100%;
+    min-height: 10rem;
+    margin-bottom: 1rem;
+    border-color: lightgrey;
+    resize: none;
+}
+.write-field:focus{
+    border: .2rem solid grey;
+}
+.comment-modify-form{
+    display: none;
+}
+.comment-modify-button{
+    border: none;
+    border-radius: 1rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: #003366;
+    color: white;
+    box-shadow: 3px 3px 3px lightgrey;
+    padding: 0.5rem;
+}
+.comment-modify:hover{
+    cursor: pointer;
+}
+
+/* 부트스트랩 버튼 */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+.btn {
+    transition: none;
+}
+}
+
+.btn:hover {
+color: #212529;
+text-decoration: none;
+}
+
+.btn:focus, .btn.focus {
+outline: 0;
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn.disabled, .btn:disabled {
+opacity: 0.65;
+}
+
+.btn:not(:disabled):not(.disabled) {
+cursor: pointer;
+}
+
+a.btn.disabled,
+fieldset:disabled a.btn {
+pointer-events: none;
+}
+
+.btn-primary {
+color: #fff;
+background-color: #007bff;
+border-color: #007bff;
+}
+
+.btn-primary:hover {
+color: #fff;
+background-color: #0069d9;
+border-color: #0062cc;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+color: #fff;
+background-color: #0069d9;
+border-color: #0062cc;
+box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+color: #fff;
+background-color: #007bff;
+border-color: #007bff;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+color: #fff;
+background-color: #0062cc;
+border-color: #005cbf;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}

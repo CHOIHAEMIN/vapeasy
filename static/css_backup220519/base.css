@@ -1,0 +1,67 @@
+/* @import url(//db.onlinewebfonts.com/c/67680f2eb947c5cbd58b40961b4a61e9?family=Apple+SD+Gothic+Neo); */
+*{
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+html{
+    background-color: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, 
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+.mycontainer{
+    width: 100%;
+}
+.mybanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    width: 100%;
+    height: 20vh;
+    background-color: #003366;
+}
+.mybanner > div > a{
+    color: #f5f5f5;
+}
+
+.mynavbar{
+    border: 0.1rem solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 5vh;
+    margin-bottom: 0.2rem;
+    background-color: white;
+}
+/* .menu{
+    margin: 0 0.5rem;
+} */
+.menu a{
+    color: black;
+    padding: 0.7rem 0;
+    margin-right: 0.5rem;
+}
+.menu > a:last-child{
+    padding-right: 2rem;
+}
+.mynavbar div:first-child{
+    margin-right: auto;
+    padding-left: 2rem;
+}
+
+@media ( max-width: 412px){
+    html {
+        background-color: wheat;
+        font-size: 14px;
+    }
+    
+
+    
+}
+
+
