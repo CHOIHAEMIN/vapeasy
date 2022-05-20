@@ -26,16 +26,45 @@
         let survey_img = document.querySelector(".survey_img")
         let survey_content = document.querySelector(".survey_content")
 
-        mysurvey.addEventListener("mouseover", function(){
-            survey_img.className = "img_active";
-            survey_button.className = "button_active";
-            survey_content.className = "content_active";
+        mysurvey.addEventListener("mouseover",function(){
+            function disapear(){
+                survey_content.style.transition = '0.5s ease';
+                survey_content.style.transform = 'scale(0)';
+                setTimeout(function(){
+                    survey_img.style.display = 'inline';
+                    survey_button.style.display = 'inline';
+                    setTimeout(function(){
+                        survey_img.style.transition = '0.5s ease';
+                        survey_img.style.transform = 'scale(1)';
+                        survey_button.style.transition = '0.5s ease';
+                        survey_button.style.transform = 'scale(1)';
+                        survey_content.className = "content_active";
+                    },300);
+                },500);
+            };
+            disapear();
         });
 
-        mysurvey.addEventListener("mouseout", function(){
-            survey_img.className = "survey_img";
-            survey_button.className = "survey_button";
-            survey_content.className = "survey_content";
+
+        mysurvey.addEventListener("mouseleave", function(){
+            function show(){
+                survey_img.style.transition = '0.5s ease';
+                survey_img.style.transform = 'scale(0)';
+                survey_button.style.transition = '0.5s ease';
+                survey_button.style.transform = 'scale(0)';
+
+                setTimeout(function(){
+                    survey_img.style.display = 'none';
+                    survey_button.style.display = 'none';
+                    survey_content.className = "survey_content";
+
+                    setTimeout(function(){
+                        survey_content.style.transition = '0.5s ease';
+                        survey_content.style.transform = 'scale(1)';
+                    },300);
+                },500);
+            };
+            show();
         });
 
         mysurvey.addEventListener("click", function(){
