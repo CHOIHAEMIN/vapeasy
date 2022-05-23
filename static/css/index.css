@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 /* 서베이 */
 .mysurvey{
@@ -14,8 +13,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-
 }
 .survey_img{
     height: 100%;
