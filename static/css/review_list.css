@@ -2,7 +2,7 @@
 /*container div */
 .container{
     width: 100%;
-    height: 50rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,7 +60,7 @@
     border: 1px solid #003366;
     border-radius: 3px;
     box-shadow: 3px 3px 3px lightgrey;
-    background-color: #e6ffff;
+    background-color: var(--content_bg);
     padding: 2rem;
     margin-top: 2rem;
 }

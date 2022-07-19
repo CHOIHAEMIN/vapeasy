@@ -17,10 +17,10 @@
                 <div class="product-image">
                     <img class="myimage" src="{{ product.image.url }}" alt="{{ product.image }}">
                 </div>
-                <a class="product-name" href="#">{{ product.name }}</a>
+                <a class="product-name" href="{% url 'vapeasy:product_detail' product.id %}">{{ product.name }}</a>
                 <p>종류 : {{product.category}}</p>
-                <p>멘솔취향 : {{product.menthol}}</p>
-                <p>단맛강도 : {{product.sweet}}</p>
+                <p>멘솔 : {{product.menthol}}</p>
+                <p>단맛 : {{product.sweet}}</p>
             </div><!--product 끝-->
             {% endfor %}
             {% endif %}

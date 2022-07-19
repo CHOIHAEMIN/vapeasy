@@ -9,13 +9,13 @@
         <div class="survey-content">
             {% for survey in survey_list %}
             <p class="survey-question content">{{ survey.question }}</p>
-            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer1 }}">{{ survey.answer1 }}</label>
-            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer2 }}">{{ survey.answer2 }}</label>
-            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer3 }}">{{ survey.answer3 }}</label>
-            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer4 }}">{{ survey.answer4 }}</label>
-            <label class="option content"><input type="checkbox" name="choice" value="{{ survey.answer5 }}">{{ survey.answer5 }}</label>
+            <label class="option content" ><input type="checkbox" name="choice" value="{{ survey.answer1 }}">{{ survey.answer1 }}</label>
+            <label class="option content" ><input type="checkbox" name="choice" value="{{ survey.answer2 }}">{{ survey.answer2 }}</label>
+            <label class="option content" ><input type="checkbox" name="choice" value="{{ survey.answer3 }}">{{ survey.answer3 }}</label>
+            <label class="option content" ><input type="checkbox" name="choice" value="{{ survey.answer4 }}">{{ survey.answer4 }}</label>
+            <label class="option content" ><input type="checkbox" name="choice" value="{{ survey.answer5 }}">{{ survey.answer5 }}</label>
             {% endfor %}
-            <input type="submit" class="survey_submit" value="완료">
+            <button type="submit" class="survey_submit" value="완료" disabled><p>완료</p></button>
         </div><!--survey-content end-->
     </form>
 </div>
@@ -24,13 +24,27 @@
 
 {% block script %}
 <script>
+    const option_checkbox = document.getElementsByTagName('input');
+    for (i=0; i<option_checkbox.length; i++){
+        option_checkbox[i].addEventListener("click", function(){
+            this.parentElement.classList.toggle('act');
 
-let input_option = document.getElementsByTagName('input')[0].value;
-for (i=0; i<=20; i++){
-    if(document.getElementsByTagName('input')[i].value == 'None'){
-        document.getElementsByTagName('label')[i-1].style.display = 'None';
-        // alert(i);
+            let checked_box = document.querySelectorAll('input[name="choice"]:checked').length;
+            if (checked_box > 0){
+                document.querySelector('.survey_submit').disabled = false;
+                document.querySelector('.survey_submit').classList.add('act');
+            }
+            else{
+                document.querySelector('.survey_submit').disabled = true;
+                document.querySelector('.survey_submit').classList.remove('act');
+            };
+    
+        });
+    
+        if(document.getElementsByTagName('input')[i].value == 'None'){
+            document.getElementsByTagName('label')[i-1].style.display = 'None';
+        };
     };
-};
+
 </script>
 {% endblock%}

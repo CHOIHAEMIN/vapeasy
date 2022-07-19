@@ -11,3 +11,8 @@ def product_list(request):
     product_list = Product.objects.order_by('id')
     context = {'product_list': product_list}
     return render(request, 'vapeasy/product_list.html', context)
+
+def product_datail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {'product': product}
+    return render(request, 'vapeasy/product_detail.html', context)

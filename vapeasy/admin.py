@@ -12,11 +12,11 @@ class SurveyAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     product_display = ['image', 'name', 'category', 'menthol', 'sweet']
 
-class AnswerAdmin(admin.ModelAdmin):
-    answer_display = ['category', 'menthol', 'sweet']
+# class AnswerAdmin(admin.ModelAdmin):
+#    answer_display = ['choice']
 
 
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Answer, AnswerAdmin)
+# admin.site.register(Answer, AnswerAdmin)

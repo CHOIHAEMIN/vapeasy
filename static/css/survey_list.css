@@ -21,25 +21,32 @@ form{
     font-size: 1.3rem;
 }
 .content{
-    border: .1rem solid lightgrey;
+    border: .1rem solid var(--sub_bg);
     border-radius: 1rem;
     padding: 1rem;
     margin: 0.5rem 0;
     width: 100%;
-    text-transform: rotate(0.04deg);
 }
 .survey_submit{
-    border: .1rem solid lightgrey;
+    border: .1rem solid var(--sub_bg);
     border-radius: 1rem;
     padding: 1rem;
     margin: 0.5rem 0;
     width: 30%;
     text-transform: rotate(0.04deg);
-    background-color: lightblue;
+    background-color: var(--main_bg);
     font-size: 1.3rem;
 }
 .survey_submit:hover{
     cursor: pointer;
-    background-color: blue;
-    color: aliceblue;
 }
+.content:hover{
+    cursor: pointer;
+}
+.act{
+    background-color: var(--sub_bg);
+}
+input{
+    display: none;
+}
+

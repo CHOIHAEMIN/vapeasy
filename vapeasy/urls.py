@@ -36,6 +36,7 @@ urlpatterns =  [
 
     # product_views.py
     path('product_list/', product_views.product_list, name='product_list'),
+    path('product_detail/<int:product_id>', product_views.product_datail, name='product_detail'),
 
     # oauth/views.py
     path('oauth/', accounts.views.oauth, name='oauth'),

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load vapeasy_filter %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+
+<div class="product_detail_container">
+    <div class="inner_container">
+        <div class="product_detail">
+            <img class="product_img" src="{{ product.image.url }}" alt="{{ product.image }}">
+            <div class="product_content">
+                <p class="product_name">{{ product.name }}</p>
+                <p class="product_category font-lg">종류 : {{product.category}}</p>
+                <p class="product_menthol font-lg">멘솔 : {{product.menthol}}</p>
+                <p class="product_sweet font-lg">단맛 : {{product.sweet}}</p>
+                <p class="product_ex">상세설명 :<br><br>{{product.detail}}</p>
+            </div><!-- product_content end -->
+        </div><!-- product_detail end -->
+            <table class="taged_review">
+                <thead>
+                    <tr>
+                        <th class="thead">👍</th>
+                        <th class="thead">제목</th>
+                        <th class="thead">작성자</th>
+                        <th class="thead">작성일자</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>f</td>
+                        <td>who</td>
+                        <td>date</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>f</td>
+                        <td>who</td>
+                        <td>date</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>f</td>
+                        <td>who</td>
+                        <td>date</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>f</td>
+                        <td>who</td>
+                        <td>date</td>
+                    </tr>
+                </tbody>
+            </table><!-- mytable end-->
+    </div><!-- inner_container end-->
+</div><!-- product_detail_container end-->
+{% endblock %}

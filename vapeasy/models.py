@@ -40,7 +40,7 @@ class Answer(models.Model):
     # category = models.CharField(max_length=50, null=True, blank=True)
     # menthol = models.CharField(max_length=50, null=True, blank=True)
     # sweet = models.CharField(max_length=50, null=True, blank=True)
-    choice = models.CharField(max_length=50, null=True, blank=True)
+    choice = models.CharField(max_length=1000, null=True, blank=True)
     
     # 어느 회원의 답변인지 확인 위한 속성
     user = models.ForeignKey(User, on_delete=models.CASCADE)
